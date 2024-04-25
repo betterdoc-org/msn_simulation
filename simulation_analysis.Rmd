@@ -1,0 +1,14 @@
+```{r}
+source("simulation_functions.R")
+
+# Köln
+lat = 50.93785139297979
+lng = 6.9551170454236795
+
+get_simulated_medics(lng = lng,
+                     lat = lat,
+                     topic_name = "migraine", 
+                     workplace_type = "practice",
+                     km_radius = 20
+                    )
+```
