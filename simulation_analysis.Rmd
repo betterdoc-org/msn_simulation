@@ -1,14 +1,158 @@
-```{r}
-source("simulation_functions.R")
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+library(DT)
+library(data.table)
+source("R/simulation_functions.R")
 
+knitr::opts_chunk$set(echo = F)
+
+```
+
+# MSN Simulation
+
+## Topic: Migraine
+
+Using a set of defined medic attributes ([see here](https://docs.google.com/spreadsheets/d/1-l8WyTSV7JMddlptHg4S4xnAgNFXwsYtbn_NTGj9gXc/edit#gid=1728361188)), we want to find out how many specialists at least have one of these attributes. For this, we simulate patients at different locations and different travel distances (CAVE: here, air distance). 
+
+For every location, we detect the matching medics either working in a practice or in a clinic within a distance of 5, 10, 50, 100 km. We first show a summary for every location and then provide detailed medic's activities information per simulation configuration (CAVE: # activities > # medics).
+
+```{r, echo=FALSE, include=FALSE}
 # Köln
 lat = 50.93785139297979
 lng = 6.9551170454236795
 
-get_simulated_medics(lng = lng,
-                     lat = lat,
-                     topic_name = "migraine", 
-                     workplace_type = "practice",
-                     km_radius = 20
-                    )
+sim_result = run_location_simulation(lng=lng, lat=lat)
+```
+
+### Location: Köln
+
+#### Summary
+
+```{r, echo=F}
+DT::datatable(sim_result[["summary"]])
+```
+
+#### Workplace: Practice
+
+##### Practice - 5 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[5]])
+```
+
+##### Practice - 10 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[10]])
+```
+
+##### Practice - 50 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[50]])
+```
+
+##### Practice - 100 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[100]])
+```
+
+#### Workplace: Clinic
+
+##### Clinic - 5 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[5]])
+```
+
+##### Clinic - 10 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[10]])
+```
+
+##### Clinic - 50 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[50]])
+```
+
+##### Clinic - 100 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[100]])
+```
+
+
+```{r, echo=FALSE, include=FALSE}
+# Sonneberg, Thüringen
+lat = 50.35662196480167
+lng = 11.170345578752212
+
+sim_result = run_location_simulation(lng=lng, lat=lat)
+```
+
+### Location: Sonneberg, Thüringen
+
+#### Summary
+
+```{r, echo=F}
+DT::datatable(sim_result[["summary"]])
+```
+
+#### Workplace: Practice
+
+##### Practice - 5 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[5]])
+```
+
+##### Practice - 10 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[10]])
+```
+
+##### Practice - 50 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[50]])
+```
+
+##### Practice - 100 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["practice"]][[100]])
+```
+
+#### Workplace: Clinic
+
+##### Clinic - 5 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[5]])
+```
+
+##### Clinic - 10 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[10]])
+```
+
+##### Clinic - 50 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[50]])
+```
+
+##### Clinic - 100 km radius
+
+```{r}
+DT::datatable(sim_result[["medics"]][["clinic"]][[100]])
 ```
