@@ -73,8 +73,7 @@ get_topic_attributes <- function (topic_name) {
     1334,
     1086,
     1332,
-    5940,
-    731
+    5940
   )
 
 
